@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | AURUM</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .product-detail-container {
+            padding-top: 150px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .product-gallery {
+            position: sticky;
+            top: 150px;
+        }
+
+        .main-image {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.8s ease;
+        }
+
+        .main-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-info-panel {
+            padding: 20px 0;
+        }
+
+        .product-category {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .product-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .product-description {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .purchase-actions {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--glass-border);
+            padding: 0 15px;
+        }
+
+        .quantity-selector button {
+            padding: 15px;
+            font-size: 1.2rem;
+        }
+
+        .quantity-selector span {
+            padding: 0 20px;
+            font-weight: bold;
+        }
+
+        .product-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .meta-item h5 {
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .meta-item p {
+            font-size: 0.9rem;
+        }
+
+        .related-section {
+            margin-top: 100px;
+            padding-top: 80px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .product-gallery {
+                position: static;
+            }
+            .main-image {
+                height: 400px;
+            }
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="preloader-logo">AURUM</div>
+    </div>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">AURUM</a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="shop.html" class="nav-link">Shop</a></li>
+            <li><a href="#" class="nav-link">About</a></li>
+            <li><a href="#" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="cart.html" class="cart-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <path d="M3 6h18"></path>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="product-detail-container" id="product-content">
+            <!-- Content will be injected by JS -->
+        </section>
+
+        <section class="related-section reveal">
+            <h2 class="brand-font">You May Also Like</h2>
+            <div class="related-grid" id="related-products">
+                <!-- Related products will be injected by JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="footer-logo">AURUM</a>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">The world's finest luxury goods, delivered with uncompromising service since 1924.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Boutique</h5>
+                <ul>
+                    <li><a href="shop.html?cat=Watches">Watches</a></li>
+                    <li><a href="shop.html?cat=Perfumes">Perfumes</a></li>
+                    <li><a href="shop.html?cat=Accessories">Accessories</a></li>
+                    <li><a href="shop.html">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Legal</h5>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AURUM LUXURY LTD. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+            
+            if (!productId) {
+                window.location.href = 'shop.html';
+                return;
+            }
+
+            const product = window.AURUM.products.find(p => p.id === productId);
+            if (!product) {
+                window.location.href = 'shop.html';
+                return;
+            }
+
+            renderProduct(product);
+            renderRelated(product);
+        });
+
+        function renderProduct(product) {
+            const container = document.getElementById('product-content');
+            container.innerHTML = `
+                <div class="product-gallery reveal">
+                    <div class="main-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                </div>
+                <div class="product-info-panel reveal">
+                    <span class="product-category">${product.category}</span>
+                    <h1 class="product-title brand-font">${product.name}</h1>
+                    <p class="product-price">$${product.price.toLocaleString()}</p>
+                    <div class="product-description">
+                        <p>${product.description}</p>
+                        <p style="margin-top: 20px;">Each piece is individually numbered and accompanied by a certificate of authenticity. Crafted using sustainable practices and the finest materials sourced globally.</p>
+                    </div>
+                    
+                    <div class="purchase-actions">
+                        <div class="quantity-selector">
+                            <button onclick="updateQty(-1)">-</button>
+                            <span id="qty-val">1</span>
+                            <button onclick="updateQty(1)">+</button>
+                        </div>
+                        <button class="btn-gold" style="flex: 1;" onclick="handleAddToCart(${product.id})">Add To Collection</button>
+                    </div>
+
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <h5>Reference</h5>
+                            <p>AUR-${product.id}00${product.id}</p>
+                        </div>
+                        <div class="meta-item">
+                            <h5>Shipping</h5>
+                            <p>Complimentary Express</p>
+                        </div>
+                        <div class="meta-item">
+                            <h5>Availability</h5>
+                            <p>In Stock</p>
+                        </div>
+                        <div class="meta-item">
+                            <h5>Warranty</h5>
+                            <p>5 Year International</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        let currentQty = 1;
+        function updateQty(delta) {
+            currentQty = Math.max(1, currentQty + delta);
+            document.getElementById('qty-val').textContent = currentQty;
+        }
+
+        function handleAddToCart(id) {
+            for(let i = 0; i < currentQty; i++) {
+                window.AURUM.addToCart(id);
+            }
+            // Optional: redirect to cart or show feedback
+            alert('Item added to your collection.');
+        }
+
+        function renderRelated(currentProduct) {
+            const container = document.getElementById('related-products');
+            const related = window.AURUM.products
+                .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id)
+                .slice(0, 3);
+            
+            related.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'shop-product-card';
+                card.innerHTML = `
+                    <div class="shop-product-image" onclick="window.location.href='product.html?id=${product.id}'">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="shop-product-info">
+                        <p class="category">${product.category}</p>
+                        <h3>${product.name}</h3>
+                        <p class="price">$${product.price.toLocaleString()}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
