@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURUM | Premium Luxury Lifestyle</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        /* Homepage Specific Styles */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-anim {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.15) 0%, rgba(10, 10, 10, 0) 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            animation: orbFloat 10s infinite alternate ease-in-out;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(-60%, -40%) scale(1); }
+            100% { transform: translate(-40%, -60%) scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            letter-spacing: 15px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 1.8s;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s forwards 2.1s;
+        }
+
+        .hero .btn-gold {
+            opacity: 0;
+            animation: fadeUp 1s forwards 2.4s;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Categories Section */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .category-card {
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition-smooth);
+        }
+
+        .category-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .category-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            transition: transform 1s ease;
+            filter: brightness(0.6);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-card h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Trending Section */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+        }
+
+        .trending-row {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding-bottom: 30px;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .trending-row::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .product-card {
+            min-width: 300px;
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.1);
+        }
+
+        .product-image {
+            height: 350px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #1a1a1a;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .product-info .price {
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Brand Story */
+        .brand-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 100px;
+            background-color: var(--surface);
+        }
+
+        .story-content blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        .story-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 15px 25px;
+            color: white;
+            font-family: inherit;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 5% 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-col h5 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: var(--gold);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 992px) {
+            .categories-grid { grid-template-columns: 1fr; }
+            .brand-story { grid-template-columns: 1fr; gap: 50px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-logo">AURUM</div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">AURUM</a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link active">Home</a></li>
+            <li><a href="shop.html" class="nav-link">Shop</a></li>
+            <li><a href="#" class="nav-link">About</a></li>
+            <li><a href="#" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="cart.html" class="cart-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <path d="M3 6h18"></path>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span class="cart-count">0</span>
+            </a>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-anim"></div>
+        <p>Est. 1924 — Geneva</p>
+        <h1>Defining Elegance</h1>
+        <a href="shop.html" class="btn-gold">Explore Collection</a>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories reveal">
+        <div class="section-header">
+            <h2>The Collections</h2>
+            <a href="shop.html" class="nav-link">View All</a>
+        </div>
+        <div class="categories-grid">
+            <a href="shop.html?cat=Watches" class="category-card">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop" alt="Watches">
+                <h3>Watches</h3>
+                <p>Timeless precision</p>
+            </a>
+            <a href="shop.html?cat=Perfumes" class="category-card">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1000&auto=format&fit=crop" alt="Perfumes">
+                <h3>Perfumes</h3>
+                <p>Invisible luxury</p>
+            </a>
+            <a href="shop.html?cat=Accessories" class="category-card">
+                <img src="https://images.unsplash.com/photo-1617114919297-3c8ddb01f599?q=80&w=1000&auto=format&fit=crop" alt="Accessories">
+                <h3>Accessories</h3>
+                <p>The final touch</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Trending Products -->
+    <section class="trending reveal">
+        <div class="section-header">
+            <h2>Trending Now</h2>
+        </div>
+        <div class="trending-row" id="trending-products">
+            <!-- Products will be injected by JS -->
+        </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section class="brand-story reveal">
+        <div class="story-content">
+            <blockquote>"Luxury is not about price, it is about the story of craftsmanship and the soul of the creator."</blockquote>
+            <p>For over a century, AURUM has stood at the intersection of heritage and innovation. Every piece in our collection is a testament to the artisans who pour their lives into perfecting the smallest details.</p>
+            <a href="#" class="btn-outline" style="margin-top: 40px;">Our Heritage</a>
+        </div>
+        <div class="story-image">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" alt="Craftsmanship" style="border: 1px solid var(--glass-border);">
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="reveal">
+        <div class="newsletter glass-panel">
+            <h2>Join The Inner Circle</h2>
+            <p>Subscribe to receive exclusive access to new collections and private events.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for joining our inner circle.');">
+                <input type="email" placeholder="Your Email Address" required>
+                <button type="submit" class="btn-gold">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="footer-logo">AURUM</a>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">The world's finest luxury goods, delivered with uncompromising service since 1924.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Boutique</h5>
+                <ul>
+                    <li><a href="shop.html?cat=Watches">Watches</a></li>
+                    <li><a href="shop.html?cat=Perfumes">Perfumes</a></li>
+                    <li><a href="shop.html?cat=Accessories">Accessories</a></li>
+                    <li><a href="shop.html">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Legal</h5>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AURUM LUXURY LTD. ALL RIGHTS RESERVED.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/devraj__xp?igsh=N3diMnVpMDVmemUw" target="_blank" style="margin-left: 20px;">INSTAGRAM</a>
+                <a href="https://www.github.com/Devraj-Dwivedi" target="_blank" style="margin-left: 20px;">GITHUB</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
+    <script>
+        // Homepage dynamic product injection
+        document.addEventListener('DOMContentLoaded', () => {
+            const trendingContainer = document.getElementById('trending-products');
+            const featuredProducts = window.AURUM.products.filter(p => p.featured);
+            
+            featuredProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image" onclick="window.location.href='product.html?id=${product.id}'">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h4>${product.name}</h4>
+                        <p class="price">$${product.price.toLocaleString()}</p>
+                        <button class="btn-gold" style="width: 100%;" onclick="window.AURUM.addToCart(${product.id})">Add To Cart</button>
+                    </div>
+                `;
+                trendingContainer.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
